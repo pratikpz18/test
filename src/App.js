@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import {getUser,getUserbyName,delUserbyName,updateUserbyName} from './apis/realmfunct';
 import CreateUser from './components/CreateUser';
 import GetUser  from './components/GetUser';
+import UpdateUser from './components/UpdateUser';
 import './App.css';
 
 function App() {
@@ -16,12 +17,7 @@ function App() {
         <Switch>
               <Route path="/" component = {GetUser} exact />
               <Route exact path="/createuser" component={CreateUser} exact/>
-              {/* <Route exact path="/register" component={Registration} exact/>
-              <Route exact path="/login" component={Login} exact/>
-              <Route exact path="/dashboard" component={Dashboard} exact/>
-              <Route exact path="/dashboard/profile/:userid" render={(props) => <Profile {...props} />} exact/>
-              <Route exact path="/dashboard/Messages" component={Messages} exact/>
-              <Route exact path="/dashboard/editprofile/:userid" render={(props) => <EditProfile {...props} />}  exact/> */}
+              <Route exact path="/updateuser/:name" render={(props) => <UpdateUser {...props} />}  exact/>
           </Switch>
       </div>
     </Router>
