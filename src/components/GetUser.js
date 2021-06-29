@@ -26,10 +26,10 @@ const GetUser = () => {
         window.location.reload();
     }
 
-    const handleUpdate = (name)=>{
-        // console.log(name);
-        updateUserbyName(name);
-    }
+    // const handleUpdate = (name)=>{
+    //     // console.log(name);
+    //     updateUserbyName(name);
+    // }
 
     return(
         <div>
@@ -38,7 +38,8 @@ const GetUser = () => {
                 <div key={index}>
                     <p>{index+1} &nbsp; <span>{data.name}</span></p>
                     <button onClick={() => handleDelete(data.name)}>Delete</button>
-                    <button onClick={() => handleUpdate(data.name)}>Update</button>
+                    {/* <button onClick={() => handleUpdate(data.name)}>Update</button> */}
+                    <button><Link to={`/updateuser/:${data.name}`}>Update</Link></button>
                 </div>
             ))
             }
