@@ -23,8 +23,8 @@ export const delUserbyName = async (name) => {
     return (res2);
 }
 
-export const updateUserbyName = async (name) => {
-    const res3 = await app.currentUser.functions.updateuser(name)
+export const updateUserbyName = async (name,updatename,mobile,email,active) => {
+    const res3 = await app.currentUser.functions.updateuser(name,updatename,mobile,email,active)
     console.log(res3)
     return (res3);
 }
