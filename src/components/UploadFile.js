@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import * as XLSX from "xlsx";
-
+import { uploadFile } from '../apis/realmfunct';
 
 const UploadFile = () => {
 
@@ -26,34 +26,38 @@ const UploadFile = () => {
   
           resolve(data);
           console.log(data)
-          setItems(data);
+          uploadFile(data)
+    
         };
   
         fileReader.onerror = (error) => {
           reject(error);
         };
       });
-
+  
+      promise.then((d) => {
+        setItems(d);
+        // console.log(d);
+      });
+      
     }
-
     console.log(items)
-    
     const columns = [
         {
-          name: "Username",
-          selector: "Username"
+          name: "name",
+          selector: "name"
         },
         {
-          name: "Mobile",
-          selector: "Mobile"
+          name: "mobile",
+          selector: "mobile"
         },
         {
-            name: "Email",
-            selector: "Email"
+            name: "email",
+            selector: "email"
         },
         {
-            name: "Active",
-            selector: "Active"
+            name: "active",
+            selector: "active"
         }
       ];
     
