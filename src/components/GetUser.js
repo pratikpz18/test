@@ -44,6 +44,7 @@ const GetUser = () => {
             ))
             }
             <Link to="/createuser">Create User</Link>
+            <Link to="/uploadfile">Upload File</Link>
         </div>
     )
 }
