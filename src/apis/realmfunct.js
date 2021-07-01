@@ -34,3 +34,9 @@ export const createUser = async (name,mobile,email,active) => {
     console.log(res4)
     return (res4);
 }
+
+export const uploadFile = async (file) => {
+    const res5 = await app.currentUser.functions.uploadfile(file)
+    console.log(res5);
+    return (res5);
+}
