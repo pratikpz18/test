@@ -5,9 +5,12 @@ import CreateUser from './components/CreateUser';
 import GetUser  from './components/GetUser';
 import UpdateUser from './components/UpdateUser';
 import UploadFile from './components/UploadFile';
+import Table from './components/Table';
 import './App.css';
 
 function App() {
+  const data = [];
+
   // getUser();
   // getUserbyName('pratik');
   // delUserbyName('hello');
@@ -20,6 +23,7 @@ function App() {
               <Route exact path="/createuser" component={CreateUser} exact/>
               <Route exact path="/updateuser/:name" render={(props) => <UpdateUser {...props} />}  exact/>
               <Route exact path="/uploadfile" component={UploadFile} exact/>
+              <Table data={data}></Table>
           </Switch>
       </div>
     </Router>
