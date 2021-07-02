@@ -1,15 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import DataTable from "react-data-table-component";
 import * as XLSX from "xlsx";
-import { uploadFile } from '../apis/realmfunct';
+import { uploadFile,getUser } from '../apis/realmfunct';
+import Table from './Table';
+import { exportfile } from '../apis/filemanp';
 
 const UploadFile = () => {
 
     const [items, setItems] = useState([]);
+    const [dbdata, setDbData] = useState([])
 
     const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
+      const promise = new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsArrayBuffer(file);
   
@@ -41,7 +43,21 @@ const UploadFile = () => {
       });
       
     }
-    console.log(items)
+
+    const getallusers = async () => {
+      try {
+          const arr = await getUser();
+          // console.log(arr);
+          setDbData(arr);
+      } catch (error) {
+          console.log(error);
+      }
+    }
+
+    useEffect(()=>{
+      getallusers();
+    },[])
+
     const columns = [
         {
           name: "name",
@@ -72,15 +88,19 @@ const UploadFile = () => {
               readExcel(file);
             }}
             ></input>
-            <DataTable
+            {/* <DataTable
             title="Users"
             data={items}
             columns={columns}
             defaultSortFieldId={1}
             pagination
             selectableRows
-            ></DataTable>
-            <Link to="/">Get All User</Link>
+            ></DataTable> */} 
+            <Table data={items}></Table> 
+            <br></br> 
+            <button onClick={(e) => exportfile(dbdata)}>Download</button>
+            <br></br> 
+            <Link to="/">Get All User</Link> 
         </div>
     )
 }
